@@ -1,7 +1,14 @@
-- clean: ['~']
+- clean:
+    - '~'
 
 - link:
-    ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
-    ~/.config/hypr/hyprland.conf: hyprland.conf
+    ~/.tmux.conf:
+      path: tmux.conf
+      force: true
+    ~/.zshrc:
+      path: zshrc
+      force: true
+    ~/.config/hypr/hyprland.conf:
+      path: hypr/hyprland.conf
+      force: true
 
