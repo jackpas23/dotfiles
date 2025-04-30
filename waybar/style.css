@@ -1,0 +1,78 @@
+* {
+    font-size: 20px;
+    font-family: JetBrainsMono, monospace;
+    font-weight: 500;
+}
+
+
+#custom-left-arrow,
+#custom-right-arrow {
+    color: rgba(255, 255, 255, 0.3); /* subtle bright arrow */
+    background: transparent;
+}
+
+window#waybar {
+    background: rgba(01, 01, 01, 0.15); /* Soft cyan glass */
+    color: #e8f6ff;
+    border: 1px solid rgba(01, 01, 01, 0.05);
+    border-radius: 6px;
+}
+
+#workspaces,
+#clock.1,
+#clock.2,
+#clock.3,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk,
+#tray {
+    background: transparent;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    color: #fdf6e3;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+#workspaces button.focused {
+    background: rgba(51, 204, 255, 0.25);
+    color: #33ccff;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+}
+
+#pulseaudio {
+    color: #33ccff;
+}
+
+#memory {
+    color: #44d1a5;
+}
+
+#cpu {
+    color: #a482f7;
+}
+
+#battery {
+    color: #8dd75e;
+}
+
+#disk {
+    color: #00ff99;
+}
+
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk {
+    padding: 0 12px;
+}
