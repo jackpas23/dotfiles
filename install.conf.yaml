@@ -8,23 +8,15 @@
     ~/.zshrc:
       path: zshrc
       force: true
- #   ~/.config/hypr/hyprland.conf:
- #     path: hypr/hyprland.conf
- #     force: true
- #   ~/.config/hypr/monitors.conf:
-  #    path: hypr/monitors.conf
-  #    force: true
-  #  ~/.config/hypr/scripts/search.sh:
-  #    path: hypr/scripts/search.sh
-  #    force: true
-  #  ~/.config/hypr/hyprpaper.conf:
-  #    path: hypr/hyprpaper.conf
-  #    force: true
     ~/.config/waybar/:
       path: waybar/**
       glob: true
       force: true
     ~/.config/hypr/:
       path: hypr/**
+      glob: true
+      force: true
+    ~/.config/kitty/:
+      path: kitty/**
       glob: true
       force: true
