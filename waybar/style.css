@@ -1,131 +1,78 @@
-/* -------------------------------------------------
-   Waybar—Minimal Glass Effect (compatible CSS)
-------------------------------------------------- */
-
-/* ---------------- Waybar Container ---------------- */
-window#waybar {
-    /* Semi-transparent “glass” */
-    background: rgba(20, 20, 20, 0.15);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-
-    /* Typography */
+* {
+    font-size: 20px;
     font-family: JetBrainsMono, monospace;
     font-weight: 500;
-    font-size: 16px;
+}
+
+
+#custom-left-arrow,
+#custom-right-arrow {
+    color: rgba(255, 255, 255, 0.3); /* subtle bright arrow */
+    background: transparent;
+}
+
+window#waybar {
+    background: rgba(01, 01, 01, 0.15); /* Soft cyan glass */
     color: #e8f6ff;
-    padding: 2px 0;
+    border: 1px solid rgba(01, 01, 01, 0.05);
+    border-radius: 6px;
 }
 
-/* ---------------- Arrows ---------------- */
-#custom-right-arrow,
-#custom-left-arrow {
+#workspaces,
+#clock.1,
+#clock.2,
+#clock.3,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk,
+#tray {
     background: transparent;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 14px;
-    padding: 0 4px;
 }
 
-/* ---------------- Workspaces ---------------- */
-#workspaces {
-    background: transparent;
-}
-
-/* Each workspace button */
 #workspaces button {
-    padding: 2px 8px;
-    color: #e8f6ff;
-    background: transparent;
-    border: none;
+    padding: 0 6px;
+    color: #fdf6e3;
     border-radius: 4px;
+    transition: background 0.2s ease;
 }
 
-/* Hover on workspace button */
-#workspaces button:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Focused workspace */
 #workspaces button.focused {
     background: rgba(51, 204, 255, 0.25);
     color: #33ccff;
 }
 
-/* ---------------- Clocks ---------------- */
-#clock\#1,
-#clock\#2,
-#clock\#3 {
-    background: transparent;
-    padding: 0 8px;
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
 }
 
-/* ---------------- Pulseaudio ---------------- */
 #pulseaudio {
     color: #33ccff;
-    padding: 0 8px;
-    background: transparent;
 }
 
-/* ---------------- Memory ---------------- */
 #memory {
     color: #44d1a5;
-    padding: 0 8px;
-    background: transparent;
 }
 
-/* ---------------- CPU ---------------- */
 #cpu {
     color: #a482f7;
-    padding: 0 8px;
-    background: transparent;
 }
 
-/* ---------------- Battery ---------------- */
 #battery {
     color: #8dd75e;
-    padding: 0 8px;
-    background: transparent;
 }
 
-/* ---------------- Disk ---------------- */
 #disk {
     color: #00ff99;
-    padding: 0 8px;
-    background: transparent;
 }
 
-/* ---------------- Tray ---------------- */
-#tray {
-    background: transparent;
-    padding: 0 4px;
-}
-
-/* ---------------- SSH Buttons (custom modules) ---------------- */
-#custom\/ssh\-pi,
-#custom\/ssh\-proxmox,
-#custom\/ssh\-honeypot {
-    color: #e8f6ff;
-    background: transparent;
-    padding: 0 8px;
-    border-radius: 4px;
-}
-
-/* Hover on SSH buttons */
-#custom\/ssh\-pi:hover,
-#custom\/ssh\-proxmox:hover,
-#custom\/ssh\-honeypot:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* ---------------- Power Menu ---------------- */
-#custom\/powermenu {
-    color: #e8f6ff;
-    background: transparent;
-    padding: 0 8px;
-}
-
-/* Hover on Power Menu */
-#custom\/powermenu:hover {
-    background: rgba(255, 255, 255, 0.05);
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk {
+    padding: 0 12px;
 }
