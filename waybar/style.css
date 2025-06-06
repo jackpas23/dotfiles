@@ -1,78 +1,162 @@
-* {
-    font-size: 20px;
-    font-family: JetBrainsMono, monospace;
-    font-weight: 500;
+/* -------------------------------------------------
+   Waybar—Cleaned-Up CSS with 3D Glass Effect
+   Uses CSS variables to pull in your Zsh/spectrum_ls palette.
+   Define these variables in your GTK or Waybar environment
+   so they match your Terminals’ colors.
+------------------------------------------------- */
+
+:root {
+  /* === Core palette (override in your environment) === */
+  --fg:        #e8f6ff; /* foreground/text */
+  --bg-glass:  rgba(20, 20, 20, 0.15); /* semi-transparent base */
+  --accent1:   #33ccff; /* e.g. workspaces focused */
+  --accent2:   #44d1a5; /* memory usage */
+  --accent3:   #a482f7; /* cpu usage */
+  --accent4:   #8dd75e; /* battery */
+  --accent5:   #00ff99; /* disk */
+  --arrow:     rgba(255, 255, 255, 0.3); /* subtle arrow color */
+  --hover-bg:  rgba(255, 255, 255, 0.05);
+  --glass-blur: 10px;
+  --border-glass: rgba(255, 255, 255, 0.2);
 }
 
-
-#custom-left-arrow,
-#custom-right-arrow {
-    color: rgba(255, 255, 255, 0.3); /* subtle bright arrow */
-    background: transparent;
-}
-
+/* ---------------- Waybar Container ---------------- */
 window#waybar {
-    background: rgba(01, 01, 01, 0.15); /* Soft cyan glass */
-    color: #e8f6ff;
-    border: 1px solid rgba(01, 01, 01, 0.05);
-    border-radius: 6px;
+  font-family: JetBrainsMono, monospace;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--fg);
+  background: var(--bg-glass);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 2px 0;
 }
 
-#workspaces,
-#clock.1,
-#clock.2,
-#clock.3,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk,
-#tray {
-    background: transparent;
+/* ---------------- Arrows ---------------- */
+#custom-right-arrow,
+#custom-left-arrow {
+  background: transparent;
+  color: var(--arrow);
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+/* ---------------- Workspaces ---------------- */
+#workspaces {
+  background: transparent;
+  display: flex;
 }
 
 #workspaces button {
-    padding: 0 6px;
-    color: #fdf6e3;
-    border-radius: 4px;
-    transition: background 0.2s ease;
-}
-
-#workspaces button.focused {
-    background: rgba(51, 204, 255, 0.25);
-    color: #33ccff;
+  padding: 2px 8px;
+  margin: 0 2px;
+  color: var(--fg);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 #workspaces button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
+  background: var(--hover-bg);
 }
 
+#workspaces button.focused {
+  background: rgba(var(--accent1-rgb), 0.25);
+  color: var(--accent1);
+}
+
+/* ---------------- Clocks ---------------- */
+#clock\\#1,
+#clock\\#2,
+#clock\\#3 {
+  background: transparent;
+  padding: 0 8px;
+}
+
+/* ---------------- Pulseaudio ---------------- */
 #pulseaudio {
-    color: #33ccff;
+  color: var(--accent1);
+  padding: 0 8px;
+  background: transparent;
 }
 
+/* ---------------- Memory ---------------- */
 #memory {
-    color: #44d1a5;
+  color: var(--accent2);
+  padding: 0 8px;
+  background: transparent;
 }
 
+/* ---------------- CPU ---------------- */
 #cpu {
-    color: #a482f7;
+  color: var(--accent3);
+  padding: 0 8px;
+  background: transparent;
 }
 
+/* ---------------- Battery ---------------- */
 #battery {
-    color: #8dd75e;
+  color: var(--accent4);
+  padding: 0 8px;
+  background: transparent;
 }
 
+/* ---------------- Disk ---------------- */
 #disk {
-    color: #00ff99;
+  color: var(--accent5);
+  padding: 0 8px;
+  background: transparent;
 }
 
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk {
-    padding: 0 12px;
+/* ---------------- Tray ---------------- */
+#tray {
+  background: transparent;
+  padding: 0 4px;
 }
+
+/* ---------------- SSH buttons (custom modules) ---------------- */
+#custom\\2fssh\\2dpi,
+#custom\\2fssh\\2fproxmox,
+#custom\\2fssh\\2fhoneypot {
+  color: var(--fg);
+  background: transparent;
+  padding: 0 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+#custom\\2fssh\\2dpi:hover,
+#custom\\2fssh\\2fproxmox:hover,
+#custom\\2fssh\\2fhoneypot:hover {
+  background: var(--hover-bg);
+}
+
+/* ---------------- Power Menu ---------------- */
+#custom\\2fpowermenu {
+  color: var(--fg);
+  background: transparent;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+#custom\\2fpowermenu:hover {
+  background: var(--hover-bg);
+}
+
+/* -------------------------------------------------
+   NOTES:
+   1. Adjust CSS variable definitions (in :root) to match
+      your spectrum_ls/zsh color palette. For instance, you
+      could turn “--accent1” into the exact ANSI blue from
+      spectrum_ls.
+   2. The “rgba(var(--accent1-rgb), 0.25)” syntax requires
+      you to define “--accent1-rgb” (e.g. "51, 204, 255") if
+      you want a semi-transparent focused workspace.
+   3. Smaller font‐size (16px) and reduced padding/spacing
+      give everything a slimmer, sleeker look.
+   4. Backdrop‐filter creates the “3D glass” blur behind the
+      panel; tweak “--glass-blur” to taste.
+------------------------------------------------- */
