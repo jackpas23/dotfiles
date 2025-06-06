@@ -1,4 +1,4 @@
-* {
+
     font-size: 20px;
     font-family: JetBrainsMono, monospace;
     font-weight: 500;
@@ -76,3 +76,4 @@ window#waybar {
 #disk {
     padding: 0 12px;
 }
+
