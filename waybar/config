@@ -38,29 +38,28 @@
   ],
 
   "custom/ssh-pi": {
-    "format": " Pi",
+    "format": "  Pi ",
     "tooltip": "SSH into Raspberry Pi",
     "on-click": "kitty ssh pi@pi.fbi-prod.apt -i ~/.ssh/pi_rsa",
     "interval": 3600
   },
 
   "custom/ssh-proxmox": {
-    "format": " PVE",
-    "tooltip": "SSH into Proxmox",
+    "format": "  PVE ",
+    "tooltip": "SSH into PVE Server",
     "on-click": "kitty ssh root@pve.fbi-prod.apt -i ~/.ssh/proxmox",
     "interval": 3600
   },
 
   "custom/ssh-honeypot": {
-    "format": " Honeypot",
+    "format": "  Honeypot ",
     "tooltip": "SSH into Honeypot",
     "on-click": "kitty ssh diddy@honeypot.fbi-prod.apt -i ~/.ssh/honeypot -p 64295",
     "interval": 3600
   },
 
   "custom/powermenu": {
-    "format": "⏻",
-    "tooltip": "Power Menu",
+    "format": " ⏻ ",
     "on-click": "/home/flaxo/.config/rofi/powermenu/type-2/powermenu.sh"
   },
 
@@ -134,6 +133,6 @@
   },
 
   "tray": {
-    "icon-size": 18
+    "icon-size": 20
   }
 }
