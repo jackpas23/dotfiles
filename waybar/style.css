@@ -1,6 +1,5 @@
 /* -------------------------------------------------
-   Waybar—Cleaned-Up CSS with 3D Glass Effect
-   (No unsupported properties)
+   Waybar—Minimal Glass Effect (no unsupported props)
 ------------------------------------------------- */
 
 /* ---------------- Waybar Container ---------------- */
@@ -31,26 +30,27 @@ window#waybar {
 /* ---------------- Workspaces ---------------- */
 #workspaces {
     background: transparent;
-    display: flex;
+    /* no display:flex */
 }
 
+/* Each workspace button: no margin, no transition */
 #workspaces button {
     padding: 2px 8px;
-    margin: 0 2px;
     color: #e8f6ff;
     background: transparent;
     border: none;
     border-radius: 4px;
-    transition: background 0.2s ease, color 0.2s ease;
 }
 
+/* Hover on workspace button */
 #workspaces button:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* Focused workspace */
 #workspaces button.focused {
-    background: rgba(51, 204, 255, 0.25);   /* accent1 behind */
-    color: #33ccff;                         /* accent1 */
+    background: rgba(51, 204, 255, 0.25);
+    color: #33ccff;
 }
 
 /* ---------------- Clocks ---------------- */
@@ -63,35 +63,35 @@ window#waybar {
 
 /* ---------------- Pulseaudio ---------------- */
 #pulseaudio {
-    color: #33ccff;      /* accent1 */
+    color: #33ccff;
     padding: 0 8px;
     background: transparent;
 }
 
 /* ---------------- Memory ---------------- */
 #memory {
-    color: #44d1a5;      /* accent2 */
+    color: #44d1a5;
     padding: 0 8px;
     background: transparent;
 }
 
 /* ---------------- CPU ---------------- */
 #cpu {
-    color: #a482f7;      /* accent3 */
+    color: #a482f7;
     padding: 0 8px;
     background: transparent;
 }
 
 /* ---------------- Battery ---------------- */
 #battery {
-    color: #8dd75e;      /* accent4 */
+    color: #8dd75e;
     padding: 0 8px;
     background: transparent;
 }
 
 /* ---------------- Disk ---------------- */
 #disk {
-    color: #00ff99;      /* accent5 */
+    color: #00ff99;
     padding: 0 8px;
     background: transparent;
 }
@@ -103,6 +103,7 @@ window#waybar {
 }
 
 /* ---------------- SSH Buttons (custom modules) ---------------- */
+/* Remove unsupported margin/transition */
 #custom\/ssh\-pi,
 #custom\/ssh\-proxmox,
 #custom\/ssh\-honeypot {
@@ -110,9 +111,9 @@ window#waybar {
     background: transparent;
     padding: 0 8px;
     border-radius: 4px;
-    transition: background 0.2s ease;
 }
 
+/* Hover on SSH buttons */
 #custom\/ssh\-pi:hover,
 #custom\/ssh\-proxmox:hover,
 #custom\/ssh\-honeypot:hover {
