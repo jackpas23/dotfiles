@@ -1,5 +1,5 @@
 /* -------------------------------------------------
-   Waybar—Minimal Glass Effect (no unsupported props)
+   Waybar—Minimal Glass Effect (compatible CSS)
 ------------------------------------------------- */
 
 /* ---------------- Waybar Container ---------------- */
@@ -30,10 +30,9 @@ window#waybar {
 /* ---------------- Workspaces ---------------- */
 #workspaces {
     background: transparent;
-    /* no display:flex */
 }
 
-/* Each workspace button: no margin, no transition */
+/* Each workspace button */
 #workspaces button {
     padding: 2px 8px;
     color: #e8f6ff;
@@ -103,7 +102,6 @@ window#waybar {
 }
 
 /* ---------------- SSH Buttons (custom modules) ---------------- */
-/* Remove unsupported margin/transition */
 #custom\/ssh\-pi,
 #custom\/ssh\-proxmox,
 #custom\/ssh\-honeypot {
@@ -125,9 +123,9 @@ window#waybar {
     color: #e8f6ff;
     background: transparent;
     padding: 0 8px;
-    cursor: pointer;
 }
 
+/* Hover on Power Menu */
 #custom\/powermenu:hover {
     background: rgba(255, 255, 255, 0.05);
 }
