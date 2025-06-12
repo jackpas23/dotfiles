@@ -40,7 +40,9 @@
   "custom/ssh-pi": {
     "format": "  Pi ",
     "tooltip": "SSH into Raspberry Pi",
-    "on-click": "kitty ssh pi@pi.fbi-prod.apt -i ~/.ssh/pi_rsa",
+    #"on-click": "kitty ssh pi@pi.fbi-prod.apt -i ~/.ssh/pi_rsa",
+  "on-click": "/home/flaxo/.config/waybar/scripts/hack.sh",
+    
     "interval": 3600
   },
 
