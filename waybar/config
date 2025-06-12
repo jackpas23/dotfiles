@@ -42,7 +42,7 @@
     "tooltip": "SSH into Raspberry Pi",
     "on-click": "/home/flaxo/.config/waybar/scripts/hack.sh",
     "interval": 3600
-    }
+    },
   "custom/ssh-pi": {
     "format": "  Pi ",
     "tooltip": "SSH into Raspberry Pi",
