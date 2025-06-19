@@ -68,8 +68,8 @@ fastfetch
 export EXEGOL_HOME=/exegol/exegol-data
 
 
-alias pwn= '~/.config/hypr/scripts/controller.sh 1 > /dev/null'
-alias homelab= 'bash ~/.config/hypr/scripts/controller.sh 2 > /dev/null'
+alias pwn='~/.config/hypr/scripts/controller.sh 1 > /dev/null'
+alias homelab='bash ~/.config/hypr/scripts/controller.sh 2 > /dev/null'
 
 
 
