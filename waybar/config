@@ -42,32 +42,32 @@
     "tray"
   ],
   "custom/hacktricks": {
-    "format": "HackTricks",
+    "format": "     HackTricks",
     "tooltip": "SSH into Raspberry Pi",
     "on-click": "/home/flaxo/.config/waybar/scripts/hack.sh",
     "interval": 3600
     },
   "custom/artt": {
-    "format": "artt",
+    "format": "     artt",
     "tooltip": "artt",
     "on-click": "/home/flaxo/.config/waybar/scripts/artt.sh",
     "interval": 3600
     },
 
   "custom/gtfobins": {
-    "format": "GTFOBINS",
+    "format": "     GTFOBINS",
     "tooltip": "gtfobins.com",
     "on-click": "/home/flaxo/.config/waybar/scripts/gtfobins.sh",
     "interval": 3600
     },
 "custom/lolad": {
-    "format": "LOLAD",
+    "format": "     LOLAD",
     "tooltip": "SSH into Raspberry Pi",
     "on-click": "/home/flaxo/.config/waybar/scripts/lolad.sh",
     "interval": 3600
     },
 "custom/ad": {
-    "format": "AD MindMap",
+    "format": "     AD MindMap",
     "tooltip": "SSH into Raspberry Pi",
     "on-click": "/home/flaxo/.config/waybar/scripts/mindmaps/admind-map.sh",
     "interval": 3600
