@@ -70,6 +70,7 @@ export EXEGOL_HOME=/exegol/exegol-data
 
 alias pwn='bash ~/.config/hypr/scripts/controller.sh 1 > /dev/null'
 alias homelab='bash ~/.config/hypr/scripts/controller.sh 2 > /dev/null'
-
+alias vending='swww img ~/.config/hypr/homelab/swww/vending.gif'
+alias eepy='swww img ~/.config/hypr/homelab/swww/computer.gif'
 
 
