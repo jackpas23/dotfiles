@@ -15,7 +15,6 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   background: black;
-  opacity: .3;
   /* border: 3px solid @overlay0; */
   /* border-radius: 0px; */
   /* padding: 5px; */
@@ -28,6 +27,7 @@ window#waybar.hidden {
 
 #waybar.empty #window {
   background: none;
+  opacity: .4;
 }
 
 /* .modules-left, .modules-center, .modules-right { */
