@@ -68,7 +68,7 @@ fastfetch
 export EXEGOL_HOME=/exegol/exegol-data
 
 
-alias theme= '~/.config/hypr/scripts/controller.sh $1 > /dev/null'
+alias theme= "~/.config/hypr/scripts/controller.sh $1 > /dev/null"
 
 
 
