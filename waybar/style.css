@@ -15,7 +15,7 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   background: black;
-  background_opacity:  .3;
+  opacity: .3;
   /* border: 3px solid @overlay0; */
   /* border-radius: 0px; */
   /* padding: 5px; */
