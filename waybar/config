@@ -48,7 +48,7 @@
     "interval": 3600
     },
   "custom/artt": {
-    "format": "     artt",
+    "format": "     artt     ",
     "tooltip": "artt",
     "on-click": "/home/flaxo/.config/waybar/scripts/artt.sh",
     "interval": 3600
