@@ -7,6 +7,10 @@
     "custom/right-arrow",
     "custom/ssh-pi",
     "custom/hacktricks",
+    "custom/lolad",
+    "custom/gtfobins",
+    "custom/ad",
+    "custom/artt",
     "custom/right-arrow",
     "custom/ssh-proxmox",
     "custom/right-arrow",
@@ -38,11 +42,41 @@
     "tray"
   ],
   "custom/hacktricks": {
-    "format": " HackTricks",
+    "format": "HackTricks",
     "tooltip": "SSH into Raspberry Pi",
     "on-click": "/home/flaxo/.config/waybar/scripts/hack.sh",
     "interval": 3600
     },
+  "custom/artt": {
+    "format": "artt",
+    "tooltip": "artt",
+    "on-click": "/home/flaxo/.config/waybar/scripts/artt.sh",
+    "interval": 3600
+    },
+
+  "custom/gtfobins": {
+    "format": "GTFOBINS",
+    "tooltip": "gtfobins.com",
+    "on-click": "/home/flaxo/.config/waybar/scripts/gtfobins.sh",
+    "interval": 3600
+    },
+"custom/lolad": {
+    "format": "LOLAD",
+    "tooltip": "SSH into Raspberry Pi",
+    "on-click": "/home/flaxo/.config/waybar/scripts/lolad.sh",
+    "interval": 3600
+    },
+"custom/ad": {
+    "format": "AD MindMap",
+    "tooltip": "SSH into Raspberry Pi",
+    "on-click": "/home/flaxo/.config/waybar/scripts/mindmaps/admind-map.sh",
+    "interval": 3600
+    },
+
+
+
+
+
   "custom/ssh-pi": {
     "format": "  Pi ",
     "tooltip": "SSH into Raspberry Pi",
