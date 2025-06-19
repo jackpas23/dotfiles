@@ -66,3 +66,9 @@ add-zsh-hook chpwd zoxide_add
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 fastfetch
 export EXEGOL_HOME=/exegol/exegol-data
+
+
+alias theme= '~/.config/hypr/scripts/controller.sh $1 > /dev/null'
+
+
+
