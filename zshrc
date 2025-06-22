@@ -17,7 +17,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # Theme and plugin setup
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="fox"
+ZSH_THEME="flaxo"
 plugins=(
   git
   fzf-tab
