@@ -1,119 +1,99 @@
+/*──────────────────────────────────────────────────────────*/
+/* Mosaic-inspired palette                                */
+/*──────────────────────────────────────────────────────────*/
+:root {
+  --mosaic-red:    #D9201B;
+  --mosaic-orange: #E04F1A;
+  --mosaic-yellow: #F2C94C;
+  --mosaic-olive:  #67712F;
+  --mosaic-teal:   #287273;
+  --outline:       #0D0D0D;
+  --bg-deep:       #1C1F22;
+  --text-light:    #FFFFFF;
+}
 
-/* Pastel TTY Colors */
-@define-color background #212121;
-@define-color background-light #3a3a3a;
-@define-color foreground #e0e0e0;
-@define-color black #5a5a5a;
-@define-color red #ff9a9e;
-@define-color green #b5e8a9;
-@define-color yellow #ffe6a7;
-@define-color blue #a5d8ff;
-@define-color magenta #dda0dd;
-@define-color cyan #a3e8e8;
-@define-color white #ffffff;
-@define-color orange #ffbb8a;
-
-
-/* Module-specific colors */
-@define-color workspaces-color @foreground;
-@define-color workspaces-focused-bg @blue;
-@define-color workspaces-focused-fg @black;
-@define-color workspaces-urgent-bg @red;
-@define-color workspaces-urgent-fg @black;
-
+/*──────────────────────────────────────────────────────────*/
+/* Reset & font                                            */
+/*──────────────────────────────────────────────────────────*/
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: monospace;
-    font-size: 14px;
+  margin: 0;
+  padding: 0;
+  font-family: "Fira Sans", "Iosevka Nerd Font";
+  font-size: 14px;
 }
 
+/*──────────────────────────────────────────────────────────*/
+/* Waybar window                                           */
+/*──────────────────────────────────────────────────────────*/
 window#waybar {
-    background-color: @blue;
-    color: @foreground;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background-color: var(--bg-deep);
+  color: var(--text-light);
 }
-
-
-
-.modules-left {
-	background-color: @background;
-	padding: 0px 0px 0px 0px;
-}
-
-
-.modules-right {
-	background-color: @background;
-	padding: 0px 5px 0px 0px;
-}
-
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
+/*──────────────────────────────────────────────────────────*/
+/* Module “tiles” (mimic mosaic panes)                     */
+/*──────────────────────────────────────────────────────────*/
+#modules-left > * ,
+#modules-center > * ,
+#modules-right > * {
+  margin: 2px;
+  padding: 4px 8px;
 
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+  /* thick black outline */
+  border: 2px solid var(--outline);
+
+  /* flat corners */
+  border-radius: 0;
+
+  /* text always white */
+  color: var(--text-light);
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+/* cycle 5 colors across all modules */
+#modules-left > *:nth-child(5n+1),
+#modules-center > *:nth-child(5n+1),
+#modules-right > *:nth-child(5n+1) {
+  background-color: var(--mosaic-red);
+}
+#modules-left > *:nth-child(5n+2),
+#modules-center > *:nth-child(5n+2),
+#modules-right > *:nth-child(5n+2) {
+  background-color: var(--mosaic-orange);
+}
+#modules-left > *:nth-child(5n+3),
+#modules-center > *:nth-child(5n+3),
+#modules-right > *:nth-child(5n+3) {
+  background-color: var(--mosaic-yellow);
+}
+#modules-left > *:nth-child(5n+4),
+#modules-center > *:nth-child(5n+4),
+#modules-right > *:nth-child(5n+4) {
+  background-color: var(--mosaic-olive);
+}
+#modules-left > *:nth-child(5n),
+#modules-center > *:nth-child(5n),
+#modules-right > *:nth-child(5n) {
+  background-color: var(--mosaic-teal);
 }
 
-
-#workspaces button {
-    padding: 0 8px;
-    background-color: transparent;
+/* hover—slightly lighten the pane */
+#modules-left > *:hover,
+#modules-center > *:hover,
+#modules-right > *:hover {
+  filter: brightness(1.2);
 }
 
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+/*──────────────────────────────────────────────────────────*/
+/* Battery critical blink                                  */
+/*──────────────────────────────────────────────────────────*/
+@keyframes blink {
+  to { opacity: 0.2; }
 }
 
-#workspaces button.focused {
-    background-color: @blue;
-    color: @black;
-}
-
-#workspaces button.urgent {
-    background-color: @workspaces-urgent-bg;
-}
-
-#mode {
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#power-profiles-daemon,
-#mpd {
-    padding: 0 10px;
-    color: @foreground;
-}
-
-
-#window {
-    background-color: @blue;
-    color: @black;
-    margin: 0px;
+#battery.critical:not(.charging) {
+  animation: blink 0.5s steps(8) infinite alternate;
 }
