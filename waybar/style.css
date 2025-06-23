@@ -1,17 +1,17 @@
 /*──────────────────────────────────────────────────────────*/
 /* Mosaic‐Inspired Palette                                */
 /*──────────────────────────────────────────────────────────*/
-@define-color mosaic-red    #D9201B;
-@define-color mosaic-orange #E04F1A;
-@define-color mosaic-yellow #F2C94C;
-@define-color mosaic-olive  #67712F;
-@define-color mosaic-teal   #287273;
+@define-color mosaic-red     #D9201B;
+@define-color mosaic-orange  #E04F1A;
+@define-color mosaic-yellow  #F2C94C;
+@define-color mosaic-olive   #67712F;
+@define-color mosaic-teal    #287273;
 @define-color mosaic-outline #0D0D0D;
-@define-color mosaic-bg     #1C1F22;
-@define-color mosaic-fg     #FFFFFF;
+@define-color mosaic-bg      #1C1F22;
+@define-color mosaic-fg      #FFFFFF;
 
 /*──────────────────────────────────────────────────────────*/
-/* Base Reset & Font                                       */
+/* Base reset & font                                       */
 /*──────────────────────────────────────────────────────────*/
 * {
   margin: 0;
@@ -21,19 +21,18 @@
 }
 
 /*──────────────────────────────────────────────────────────*/
-/* Bar Background                                          */
+/* Bar background & text                                   */
 /*──────────────────────────────────────────────────────────*/
 window#waybar {
   background-color: @mosaic-bg;
   color: @mosaic-fg;
 }
-
 window#waybar.hidden {
   opacity: 0.2;
 }
 
 /*──────────────────────────────────────────────────────────*/
-/* Mosaic “Panes” for Every Module                         */
+/* All modules get a pane‐outline & default bg             */
 /*──────────────────────────────────────────────────────────*/
 #modules-left > *,
 #modules-center > *,
@@ -41,46 +40,24 @@ window#waybar.hidden {
   margin: 2px;
   padding: 4px 8px;
 
-  /* thick black lead lines */
   border: 2px solid @mosaic-outline;
   border-radius: 0;
 
-  /* fallback color—overridden by nth-child rules below */
-  background-color: @mosaic-red;
+  background-color: @mosaic-bg;
   color: @mosaic-fg;
 }
 
 /*──────────────────────────────────────────────────────────*/
-/* Cycle 5 Colors Across Children                          */
+/* Class‐based pane colors                                 */
 /*──────────────────────────────────────────────────────────*/
-#modules-left > *:nth-child(5n+1),
-#modules-center > *:nth-child(5n+1),
-#modules-right > *:nth-child(5n+1) {
-  background-color: @mosaic-red;
-}
-#modules-left > *:nth-child(5n+2),
-#modules-center > *:nth-child(5n+2),
-#modules-right > *:nth-child(5n+2) {
-  background-color: @mosaic-orange;
-}
-#modules-left > *:nth-child(5n+3),
-#modules-center > *:nth-child(5n+3),
-#modules-right > *:nth-child(5n+3) {
-  background-color: @mosaic-yellow;
-}
-#modules-left > *:nth-child(5n+4),
-#modules-center > *:nth-child(5n+4),
-#modules-right > *:nth-child(5n+4) {
-  background-color: @mosaic-olive;
-}
-#modules-left > *:nth-child(5n),
-#modules-center > *:nth-child(5n),
-#modules-right > *:nth-child(5n) {
-  background-color: @mosaic-teal;
-}
+.pane-1 { background-color: @mosaic-red; }
+.pane-2 { background-color: @mosaic-orange; }
+.pane-3 { background-color: @mosaic-yellow; }
+.pane-4 { background-color: @mosaic-olive; }
+.pane-5 { background-color: @mosaic-teal; }
 
 /*──────────────────────────────────────────────────────────*/
-/* Hover: Brighten the Lead Lines                          */
+/* Hover → brighten outline                                */
 /*──────────────────────────────────────────────────────────*/
 #modules-left > *:hover,
 #modules-center > *:hover,
@@ -89,12 +66,11 @@ window#waybar.hidden {
 }
 
 /*──────────────────────────────────────────────────────────*/
-/* Critical Battery Blink                                   */
+/* Critical battery blink                                  */
 /*──────────────────────────────────────────────────────────*/
 @keyframes blink {
   to { opacity: 0.2; }
 }
-
 #battery.critical:not(.charging) {
   animation: blink 0.5s steps(8) infinite alternate;
 }
