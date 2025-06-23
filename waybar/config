@@ -1,6 +1,7 @@
-{  
+{
   "layer": "top",
   "position": "top",
+  "reload_style_on_change": true,  // auto-reload when style.css changes
 
   "modules-left": [
     "hyprland/workspaces",
@@ -30,7 +31,25 @@
     "tray"
   ],
 
-  // — your custom modules remain unchanged —
+  // — your custom modules exactly as before —
+  "custom/ssh-pi": {
+    "format": "  Pi ",
+    "tooltip": "SSH into Raspberry Pi",
+    "on-click": "kitty ssh pi@pi.fbi-prod.apt -i ~/.ssh/pi_rsa",
+    "interval": 3600
+  },
+  "custom/ssh-proxmox": {
+    "format": "  PVE ",
+    "tooltip": "SSH into PVE Server",
+    "on-click": "kitty ssh root@pve.fbi-prod.apt -i ~/.ssh/proxmox",
+    "interval": 3600
+  },
+  "custom/ssh-honeypot": {
+    "format": "  Honeypot ",
+    "tooltip": "SSH into Honeypot",
+    "on-click": "kitty ssh diddy@honeypot.fbi-prod.apt -i ~/.ssh/honeypot -p 64295",
+    "interval": 3600
+  },
   "custom/hacktricks": {
     "format": "     HackTricks",
     "tooltip": "SSH into Raspberry Pi",
@@ -61,24 +80,6 @@
     "on-click": "/home/flaxo/.config/waybar/scripts/mindmaps/admind-map.sh",
     "interval": 3600
   },
-  "custom/ssh-pi": {
-    "format": "  Pi ",
-    "tooltip": "SSH into Raspberry Pi",
-    "on-click": "kitty ssh pi@pi.fbi-prod.apt -i ~/.ssh/pi_rsa",
-    "interval": 3600
-  },
-  "custom/ssh-proxmox": {
-    "format": "  PVE ",
-    "tooltip": "SSH into PVE Server",
-    "on-click": "kitty ssh root@pve.fbi-prod.apt -i ~/.ssh/proxmox",
-    "interval": 3600
-  },
-  "custom/ssh-honeypot": {
-    "format": "  Honeypot ",
-    "tooltip": "SSH into Honeypot",
-    "on-click": "kitty ssh diddy@honeypot.fbi-prod.apt -i ~/.ssh/honeypot -p 64295",
-    "interval": 3600
-  },
   "custom/powermenu": {
     "format": " ⏻ ",
     "on-click": "/home/flaxo/.config/rofi/powermenu/type-2/powermenu.sh"
@@ -89,18 +90,9 @@
     "format": "{name}"
   },
 
-  "clock#1": {
-    "format": "{:%a}",
-    "tooltip": false
-  },
-  "clock#2": {
-    "format": "{:%H:%M}",
-    "tooltip": false
-  },
-  "clock#3": {
-    "format": "{:%m-%d}",
-    "tooltip": false
-  },
+  "clock#1": { "format": "{:%a}", "tooltip": false },
+  "clock#2": { "format": "{:%H:%M}", "tooltip": false },
+  "clock#3": { "format": "{:%m-%d}", "tooltip": false },
 
   "pulseaudio": {
     "format": "{icon} {volume:2}%",
@@ -108,33 +100,21 @@
     "format-muted": "MUTE",
     "format-icons": {
       "headphones": "",
-      "default": ["", ""]
+      "default": ["",""]
     },
     "scroll-step": 5,
     "on-click": "pamixer -t",
     "on-click-right": "pavucontrol"
   },
 
-  "memory": {
-    "interval": 5,
-    "format": "Mem {used:2}%"
-  },
-  "cpu": {
-    "interval": 5,
-    "format": "CPU {usage:2}%"
-  },
+  "memory": { "interval": 5, "format": "Mem {used:2}%" },
+  "cpu":    { "interval": 5, "format": "CPU {usage:2}%" },
   "battery": {
     "states": { "good": 95, "warning": 30, "critical": 15 },
     "format": "{icon} {capacity}%",
     "format-icons": ["","","","",""]
   },
-  "disk": {
-    "interval": 5,
-    "format": "Disk {percentage_used:2}%",
-    "path": "/"
-  },
+  "disk":   { "interval": 5, "format": "Disk {percentage_used:2}%", "path": "/" },
 
-  "tray": {
-    "icon-size": 20
-  }
+  "tray": { "icon-size": 20 }
 }
