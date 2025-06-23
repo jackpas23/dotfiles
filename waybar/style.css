@@ -97,3 +97,4 @@ window#waybar.hidden {
 #battery.critical:not(.charging) {
   animation: blink 0.5s steps(8) infinite alternate;
 }
+
