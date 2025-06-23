@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "position": "bottom",
+  "position": "right",
   "reload_style_on_change": true,
 
   "modules-left": [
