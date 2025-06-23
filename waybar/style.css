@@ -1,76 +1,159 @@
-/*──────────────────────────────────────────────────────────*/
-/* Mosaic‐Inspired Palette                                */
-/*──────────────────────────────────────────────────────────*/
-@define-color mosaic-red     #D9201B;
-@define-color mosaic-orange  #E04F1A;
-@define-color mosaic-yellow  #F2C94C;
-@define-color mosaic-olive   #67712F;
-@define-color mosaic-teal    #287273;
-@define-color mosaic-outline #0D0D0D;
-@define-color mosaic-bg      #1C1F22;
-@define-color mosaic-fg      #FFFFFF;
+@import "./waybar.css";
 
-/*──────────────────────────────────────────────────────────*/
-/* Base reset & font                                       */
-/*──────────────────────────────────────────────────────────*/
+@define-color active @color0;
+
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Fira Sans", "Iosevka Nerd Font";
-  font-size: 14px;
+    border: none;
+    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF" ;
+    min-height: 10px;
+    color: @active;
+    /* color: White; */
 }
 
-/*──────────────────────────────────────────────────────────*/
-/* Bar background & text                                   */
-/*──────────────────────────────────────────────────────────*/
 window#waybar {
-  background-color: @mosaic-bg;
-  color: @mosaic-fg;
-}
-window#waybar.hidden {
-  opacity: 0.2;
-}
+  /* background: transparent; */
+  background: rgba(0, 0, 0, 0.9);
+ }
 
-/*──────────────────────────────────────────────────────────*/
-/* All modules get a pane‐outline & default bg             */
-/*──────────────────────────────────────────────────────────*/
-#modules-left > *,
-#modules-center > *,
-#modules-right > * {
-  margin: 2px;
-  padding: 4px 8px;
-
-  border: 2px solid @mosaic-outline;
-  border-radius: 0;
-
-  background-color: @mosaic-bg;
-  color: @mosaic-fg;
+tooltip {
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.9);
+  color: @active;
 }
 
-/*──────────────────────────────────────────────────────────*/
-/* Class‐based pane colors                                 */
-/*──────────────────────────────────────────────────────────*/
-.pane-1 { background-color: @mosaic-red; }
-.pane-2 { background-color: @mosaic-orange; }
-.pane-3 { background-color: @mosaic-yellow; }
-.pane-4 { background-color: @mosaic-olive; }
-.pane-5 { background-color: @mosaic-teal; }
-
-/*──────────────────────────────────────────────────────────*/
-/* Hover → brighten outline                                */
-/*──────────────────────────────────────────────────────────*/
-#modules-left > *:hover,
-#modules-center > *:hover,
-#modules-right > *:hover {
-  border-color: @mosaic-fg;
+tooltip label{
+  color: @active;
 }
 
-/*──────────────────────────────────────────────────────────*/
-/* Critical battery blink                                  */
-/*──────────────────────────────────────────────────────────*/
-@keyframes blink {
-  to { opacity: 0.2; }
+#custom-logo {
+  padding: 0 10px;
 }
+
+.modules-right {
+  /* border: 1px solid lighter(@active); */
+  /* border: 1px solid @active; */
+  border-radius: 15px;
+  padding: 0px 5px;
+  margin: 2px 5px;
+  background: rgba(000, 000, 000, 0.8);
+}
+
+.modules-center {
+  /* border: 1px solid lighter(@active); */
+  /* border: 1px solid @active; */
+  padding: 0 15px;
+  margin: 2px 0px;
+  border-radius: 15px 15px 15px 15px;
+  background: rgba(000, 000, 000, 0.8);
+}
+
+.modules-left {
+  /* border: 1px solid lighter(@active); */
+  /* border: 1px solid @active; */
+  padding: 0px 5px;
+  border-radius: 15px;
+  margin: 2px 5px;
+  background: rgba(000, 000, 000, 0.8);
+}
+
+#battery,
+#custom-clipboard,
+#custom-colorpicker,
+#custom-powerDraw,
+#custom-updates,
+#custom-pacman,
+#bluetooth,
+#pulseaudio,
+#custom-hotspot,
+#pulseaudio.mic,
+#pulseaudio.bluetooth,
+#network,
+#disk,
+#memory,
+#backlight,
+#cpu,
+#temperature,
+#custom-weather,
+#idle_inhibitor,
+#jack,
+#tray,
+#window,
+/* #workspaces, */
+#clock {
+  padding: 0 5px;
+}
+
+#workspaces button {
+  border-radius: 0px;
+}
+
+#workspaces button.active {
+    border-bottom: solid 2px @active;
+}
+
+#pulseaudio{
+  padding-top: 3px;
+}
+
+#pulseaudio.muted{
+  color: #FF0000;
+  padding-top: 2px;
+  padding-right: 10px;
+}
+
+#backlight-slider,
+#pulseaudio-slider {
+  padding: 0 5px 0 8px;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+  min-width: 50px;
+  min-height: 5px;
+  border-radius: 8px;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+   min-width: 5px;
+   min-height: 5px;
+   background-color: #FFFFFF;
+
+}
+
+/* #clock{ */
+/*   color: #5fd1fa; */
+/* } */
+
+#battery.charging {
+    color: #77DD77;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #ffbe61;
+    color: black;
+}
+
 #battery.critical:not(.charging) {
-  animation: blink 0.5s steps(8) infinite alternate;
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
 }
