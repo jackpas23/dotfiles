@@ -1,5 +1,6 @@
 @import "mocha.css";
 
+/* base font + reset */
 * {
   font-family:
     Symbols Nerd Font,
@@ -9,44 +10,44 @@
   padding: 0;
 }
 
-/* make the bar itself transparent */
+/* transparent bar */
 window#waybar {
   background: none;
 }
 
-/* target every module item */
-.module {
-  display: inline-flex;
-  align-items: center;
+/*  apply to every module item ◉  */
+#modules-left > *,
+#modules-center > *,
+#modules-right > * {
   margin: 0 4px;
   padding: 4px 12px;
-  background: none;                   /* no solid fill */
+
+  background-color: transparent;           /* no fill */
   border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 9999px;              /* pill shape */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  transition: box-shadow 0.2s ease;
+  border-radius: 9999px;                   /* pill/oval shape */
 }
 
-.module:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+/* hover accent */
+#modules-left > *:hover,
+#modules-center > *:hover,
+#modules-right > *:hover {
+  border-color: rgba(255,255,255,0.4);
 }
 
-/* remove any leftover arrow styling */
-#custom-right-arrow,
-#custom-left-arrow {
-  display: none !important;
-}
-
-/* preserve your existing color mappings */
-#clock { color: @yellow; }
-#cpu   { color: @green; }
-#memory { color: @sky; }
-#disk  { color: @sapphire; }
+/* keep your existing color rules */
+#clock      { color: @yellow; }
+#cpu        { color: @green; }
+#memory     { color: @sky; }
+#disk       { color: @sapphire; }
 #battery.good    { color: @green; }
 #battery.warning { color: @yellow; }
-#battery.critical:not(.charging) { color: @red; animation: blink 1s infinite alternate; }
+#battery.critical:not(.charging) {
+  color: @red;
+  /* blink keyframe from before… */
+  animation: blink 1s infinite alternate;
+}
 
-/* keyframes for critical blink */
+/* blink animation */
 @keyframes blink {
   to { opacity: 0.2; }
 }
