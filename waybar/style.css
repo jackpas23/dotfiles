@@ -1,63 +1,91 @@
 @import "mocha.css";
 
-/* base font + reset */
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Base reset & font                                                       */
+/*──────────────────────────────────────────────────────────────────────────*/
 * {
+  margin: 0;
+  padding: 0;
   font-family:
     Symbols Nerd Font,
     PragmataPro;
   font-size: 15px;
-  margin: 0;
-  padding: 0;
 }
 
-/* transparent bar */
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Bar background                                                          */
+/*──────────────────────────────────────────────────────────────────────────*/
 window#waybar {
   background: none;
 }
 
-/*  apply to every module item ◉  */
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Common pill styling for all modules                                      */
+/*──────────────────────────────────────────────────────────────────────────*/
 #modules-left > *,
 #modules-center > *,
 #modules-right > * {
-  margin: 0 4px;
-  padding: 4px 12px;
+  margin: 0 6px;
+  padding: 6px 14px;
 
-/* apply to every module item ◉ */
-#modules-left > *,
-#modules-center > *,
-#modules-right > * {
-  margin: 0 4px;
-  padding: 4px 12px;
+  /* translucent dark backdrop */
+  background-color: rgba(30, 30, 30, 0.6);
 
-  /* a semi-transparent dark background so text pops */
-  background-color: rgba(0, 0, 0, 0.4);
+  /* subtle border to pop */
+  border: 1px solid rgba(255, 255, 255, 0.15);
 
-  /* optional soft border for extra “pop” */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 9999px; /* pill shape */
+  /* full pill shape */
+  border-radius: 9999px;
 }
 
-/* on hover, brighten the backdrop and border */
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Hover state: deepen background & brighten border                        */
+/*──────────────────────────────────────────────────────────────────────────*/
 #modules-left > *:hover,
 #modules-center > *:hover,
 #modules-right > *:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(30, 30, 30, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
 }
-/* keep your existing color rules */
-#clock      { color: @yellow; }
-#cpu        { color: @green; }
-#memory     { color: @sky; }
-#disk       { color: @sapphire; }
-#battery.good    { color: @green; }
-#battery.warning { color: @yellow; }
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Module‐specific colors                                                   */
+/*──────────────────────────────────────────────────────────────────────────*/
+#clock {
+  color: @yellow;
+}
+
+#cpu {
+  color: @green;
+}
+
+#memory {
+  color: @sky;
+}
+
+#disk {
+  color: @sapphire;
+}
+
+/* Battery states */
+#battery.good {
+  color: @green;
+}
+
+#battery.warning {
+  color: @yellow;
+}
+
 #battery.critical:not(.charging) {
   color: @red;
-  /* blink keyframe from before… */
   animation: blink 1s infinite alternate;
 }
 
-/* blink animation */
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Blink keyframes for critical battery                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
 @keyframes blink {
-  to { opacity: 0.2; }
+  to {
+    opacity: 0.2;
+  }
 }
