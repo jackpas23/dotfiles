@@ -18,7 +18,7 @@
 /* Bar background & tooltip                                                */
 /*──────────────────────────────────────────────────────────────────────────*/
 window#waybar {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.0);
 }
 
 tooltip {
@@ -40,7 +40,7 @@ tooltip label {
     border-radius: 15px;
     padding: 0px 5px;
     margin: 2px 5px;
-    background: rgba(0, 0, 0, 0.0);
+    background: rgba(0, 0, 0, 0.9);
 }
 
 /*──────────────────────────────────────────────────────────────────────────*/
