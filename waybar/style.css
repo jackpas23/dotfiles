@@ -18,7 +18,7 @@
 /* Bar background & tooltip                                                */
 /*──────────────────────────────────────────────────────────────────────────*/
 window#waybar {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 tooltip {
