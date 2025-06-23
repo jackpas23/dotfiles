@@ -1,62 +1,51 @@
-@import "./waybar.css";
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Define your active/text color (replace #FFFFFF with whatever you like) */
+/*──────────────────────────────────────────────────────────────────────────*/
+@define-color active #FFFFFF;
 
-@define-color active @color0;
-
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Base reset & font                                                       */
+/*──────────────────────────────────────────────────────────────────────────*/
 * {
     border: none;
     font-size: 15px;
-    font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF" ;
+    font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF";
     min-height: 10px;
     color: @active;
-    /* color: White; */
 }
 
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Bar background & tooltip                                                */
+/*──────────────────────────────────────────────────────────────────────────*/
 window#waybar {
-  /* background: transparent; */
-  background: rgba(0, 0, 0, 0.9);
- }
+    background: rgba(0, 0, 0, 0.9);
+}
 
 tooltip {
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.9);
-  color: @active;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.9);
+    color: @active;
 }
 
-tooltip label{
-  color: @active;
+tooltip label {
+    color: @active;
 }
 
-#custom-logo {
-  padding: 0 10px;
-}
-
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Group-pills for left, center, right                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
+.modules-left,
+.modules-center,
 .modules-right {
-  /* border: 1px solid lighter(@active); */
-  /* border: 1px solid @active; */
-  border-radius: 15px;
-  padding: 0px 5px;
-  margin: 2px 5px;
-  background: rgba(000, 000, 000, 0.8);
+    border-radius: 15px;
+    padding: 0px 5px;
+    margin: 2px 5px;
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.modules-center {
-  /* border: 1px solid lighter(@active); */
-  /* border: 1px solid @active; */
-  padding: 0 15px;
-  margin: 2px 0px;
-  border-radius: 15px 15px 15px 15px;
-  background: rgba(000, 000, 000, 0.8);
-}
-
-.modules-left {
-  /* border: 1px solid lighter(@active); */
-  /* border: 1px solid @active; */
-  padding: 0px 5px;
-  border-radius: 15px;
-  margin: 2px 5px;
-  background: rgba(000, 000, 000, 0.8);
-}
-
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Per-module padding under those pills                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
 #battery,
 #custom-clipboard,
 #custom-colorpicker,
@@ -79,59 +68,65 @@ tooltip label{
 #jack,
 #tray,
 #window,
-/* #workspaces, */
 #clock {
-  padding: 0 5px;
+    padding: 0 5px;
 }
 
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Workspace underline                                                      */
+/*──────────────────────────────────────────────────────────────────────────*/
 #workspaces button {
-  border-radius: 0px;
+    border-radius: 0px;
 }
 
 #workspaces button.active {
     border-bottom: solid 2px @active;
 }
 
-#pulseaudio{
-  padding-top: 3px;
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Pulseaudio tweaks                                                        */
+/*──────────────────────────────────────────────────────────────────────────*/
+#pulseaudio {
+    padding-top: 3px;
 }
 
-#pulseaudio.muted{
-  color: #FF0000;
-  padding-top: 2px;
-  padding-right: 10px;
+#pulseaudio.muted {
+    color: #FF0000;
+    padding-top: 2px;
+    padding-right: 10px;
 }
 
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Sliders (backlight & pulseaudio)                                         */
+/*──────────────────────────────────────────────────────────────────────────*/
 #backlight-slider,
 #pulseaudio-slider {
-  padding: 0 5px 0 8px;
+    padding: 0 5px 0 8px;
 }
 
 #backlight-slider slider,
 #pulseaudio-slider slider {
-  background-color: transparent;
-  box-shadow: none;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 #backlight-slider trough,
 #pulseaudio-slider trough {
-  min-width: 50px;
-  min-height: 5px;
-  border-radius: 8px;
+    min-width: 50px;
+    min-height: 5px;
+    border-radius: 8px;
 }
 
 #backlight-slider highlight,
 #pulseaudio-slider highlight {
-   min-width: 5px;
-   min-height: 5px;
-   background-color: #FFFFFF;
-
+    min-width: 5px;
+    min-height: 5px;
+    background-color: #FFFFFF;
 }
 
-/* #clock{ */
-/*   color: #5fd1fa; */
-/* } */
-
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Battery states                                                           */
+/*──────────────────────────────────────────────────────────────────────────*/
 #battery.charging {
     color: #77DD77;
 }
