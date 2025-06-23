@@ -1,63 +1,67 @@
+/* Everforest Dark Color Pallete */
+
+@define-color black #272E33;
+@define-color red #E67E80;
+@define-color green #A7C080;
+@define-color yellow #DBBC7F;
+@define-color blue #7FBBB3;
+@define-color magenta #D699B6;
+@define-color cyan #83C092;
+@define-color white #D3C6AA;
+@define-color bright-black #414B50;
+@define-color bright-red #E67E80;
+@define-color bright-green #A7C080;
+@define-color bright-yellow #DBBC7F;
+@define-color bright-blue #7FBBB3;
+@define-color bright-magenta #D699B6;
+@define-color bright-cyan #83C092;
+@define-color bright-white #D3C6AA;
 
 
-/* Pastel TTY Colors */
-@define-color background #212121;
-@define-color background-light #3a3a3a;
-@define-color foreground #e0e0e0;
-@define-color black #5a5a5a;
-@define-color red #ff9a9e;
-@define-color green #b5e8a9;
-@define-color yellow #ffe6a7;
-@define-color blue #a5d8ff;
-@define-color magenta #dda0dd;
-@define-color cyan #a3e8e8;
-@define-color white #ffffff;
-@define-color orange #ffbb8a;
+/* Misc Colors */
+@define-color empty rgba(0,0,0,0);
 
 
-/* Module-specific colors */
-@define-color workspaces-color @foreground;
-@define-color workspaces-focused-bg @blue;
-@define-color workspaces-focused-fg @black;
-@define-color workspaces-urgent-bg @red;
-@define-color workspaces-urgent-fg @black;
+/* Define for each module */
+@define-color bg @black;
+@define-color fg @white;
+@define-color workspaces-focused @green;
+@define-color mode @cyan;
+@define-color mode-fg @bg;
+@define-color workspaces-focused-fg @bg;
+@define-color pulseaudio @blue;
+@define-color network @bright-green;
+@define-color cpu @cyan;
+@define-color memory @bright-magenta;
+@define-color backlight @yellow;
+@define-color battery @red;
+@define-color clock @bright-blue;
+@define-color tray @empty;
+
+
 
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: monospace;
-    font-size: 14px;
+    font-family: "Iosevka Nerd Font Mono";
+    font-size: 13px;
 }
 
 window#waybar {
-    background-color: @blue;
-    color: @foreground;
+    background-color: @bg;
+    color: @fg;
     transition-property: background-color;
     transition-duration: .5s;
 }
 
-
-
-.modules-left {
-	background-color: @background;
-	padding: 0px 0px 0px 0px;
+window#waybar > box {
+    padding: 4px;
 }
-
-
-.modules-right {
-	background-color: @background;
-	padding: 0px 5px 0px 0px;
-}
-
 
 window#waybar.hidden {
     opacity: 0.2;
 }
 
-
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
 }
@@ -65,31 +69,29 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @fg;
 }
 
-
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 0px;
     background-color: transparent;
+    color: @fg;
+    border-radius: 4px;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: alpha(@bg, 0.5);
 }
 
 #workspaces button.focused {
-    background-color: @blue;
-    color: @black;
+    background-color: @workspaces-focused;
+    color: @workspaces-focused-fg;
 }
 
 #workspaces button.urgent {
-    background-color: @workspaces-urgent-bg;
+    background-color: @bright-red;
 }
 
-#mode {
-    box-shadow: inset 0 -3px #ffffff;
-}
 
 #clock,
 #battery,
@@ -109,12 +111,110 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 10px;
-    color: @foreground;
+    color: @fg;
+    border-radius: 4px;
 }
 
 
-#window {
-    background-color: @blue;
-    color: @black;
-    margin: 0px;
+#mode {
+    background-color: @mode;
+    color: @mode-fg;
+    box-shadow: none;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: @clock;
+    color: @bg;
+}
+
+#battery {
+    background-color: @battery;
+    color: @bg;
+}
+
+#battery.charging, #battery.plugged {
+    background-color: @battery;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @fg;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    background-color: @cpu;
+    color: @bg;
+}
+
+#memory {
+    background-color: @memory;
+    color: @bg;
+}
+
+
+#backlight {
+    background-color: @backlight;
+    color: @bg;
+}
+
+#network {
+    background-color: @network;
+    color: @bg;
+}
+
+#network.disconnected {
+    background-color: @red;
+}
+
+#pulseaudio {
+    background-color: @pulseaudio;
+    color: @bg;
+}
+
+#pulseaudio.muted {
+    background-color: @cyan;
+    color: @bg;
+}
+
+
+#tray {
+    background-color: @tray;
+    color: @bg;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
 }
