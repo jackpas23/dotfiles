@@ -1,100 +1,154 @@
-/*──────────────────────────────────────────────────────────*/
-/* Mosaic-inspired palette                                */
-/*──────────────────────────────────────────────────────────*/
-:root {
-  --mosaic-red:    #D9201B;
-  --mosaic-orange: #E04F1A;
-  --mosaic-yellow: #F2C94C;
-  --mosaic-olive:  #67712F;
-  --mosaic-teal:   #287273;
-  --outline:       #0D0D0D;
-  --bg-deep:       #1C1F22;
-  --text-light:    #FFFFFF;
-}
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Define your active/text color (replace #FFFFFF with whatever you like) */
+/*──────────────────────────────────────────────────────────────────────────*/
+@define-color active #FFFFFF;
 
-/*──────────────────────────────────────────────────────────*/
-/* Reset & font                                            */
-/*──────────────────────────────────────────────────────────*/
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Base reset & font                                                       */
+/*──────────────────────────────────────────────────────────────────────────*/
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Fira Sans", "Iosevka Nerd Font";
-  font-size: 14px;
+    border: none;
+    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF";
+    min-height: 10px;
+    color: @active;
 }
 
-/*──────────────────────────────────────────────────────────*/
-/* Waybar window                                           */
-/*──────────────────────────────────────────────────────────*/
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Bar background & tooltip                                                */
+/*──────────────────────────────────────────────────────────────────────────*/
 window#waybar {
-  background-color: var(--bg-deep);
-  color: var(--text-light);
+    background: rgba(0, 0, 0, 0.9);
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
+tooltip {
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.9);
+    color: @active;
 }
 
-/*──────────────────────────────────────────────────────────*/
-/* Module “tiles” (mimic mosaic panes)                     */
-/*──────────────────────────────────────────────────────────*/
-#modules-left > * ,
-#modules-center > * ,
-#modules-right > * {
-  margin: 2px;
-  padding: 4px 8px;
-
-  /* thick black outline */
-  border: 2px solid var(--outline);
-
-  /* flat corners */
-  border-radius: 0;
-
-  /* text always white */
-  color: var(--text-light);
+tooltip label {
+    color: @active;
 }
 
-/* cycle 5 colors across all modules */
-#modules-left > *:nth-child(5n+1),
-#modules-center > *:nth-child(5n+1),
-#modules-right > *:nth-child(5n+1) {
-  background-color: var(--mosaic-red);
-}
-#modules-left > *:nth-child(5n+2),
-#modules-center > *:nth-child(5n+2),
-#modules-right > *:nth-child(5n+2) {
-  background-color: var(--mosaic-orange);
-}
-#modules-left > *:nth-child(5n+3),
-#modules-center > *:nth-child(5n+3),
-#modules-right > *:nth-child(5n+3) {
-  background-color: var(--mosaic-yellow);
-}
-#modules-left > *:nth-child(5n+4),
-#modules-center > *:nth-child(5n+4),
-#modules-right > *:nth-child(5n+4) {
-  background-color: var(--mosaic-olive);
-}
-#modules-left > *:nth-child(5n),
-#modules-center > *:nth-child(5n),
-#modules-right > *:nth-child(5n) {
-  background-color: var(--mosaic-teal);
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Group-pills for left, center, right                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
+.modules-left,
+.modules-center,
+.modules-right {
+    border-radius: 15px;
+    padding: 0px 5px;
+    margin: 2px 5px;
+    background: rgba(0, 0, 0, 0.8);
 }
 
-/* hover—slightly lighten the pane */
-#modules-left > *:hover,
-#modules-center > *:hover,
-#modules-right > *:hover {
-  filter: brightness(1.2);
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Per-module padding under those pills                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
+#battery,
+#custom-clipboard,
+#custom-colorpicker,
+#custom-powerDraw,
+#custom-updates,
+#custom-pacman,
+#bluetooth,
+#pulseaudio,
+#custom-hotspot,
+#pulseaudio.mic,
+#pulseaudio.bluetooth,
+#network,
+#disk,
+#memory,
+#backlight,
+#cpu,
+#temperature,
+#custom-weather,
+#idle_inhibitor,
+#jack,
+#tray,
+#window,
+#clock {
+    padding: 0 5px;
 }
 
-/*──────────────────────────────────────────────────────────*/
-/* Battery critical blink                                  */
-/*──────────────────────────────────────────────────────────*/
-@keyframes blink {
-  to { opacity: 0.2; }
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Workspace underline                                                      */
+/*──────────────────────────────────────────────────────────────────────────*/
+#workspaces button {
+    border-radius: 0px;
+}
+
+#workspaces button.active {
+    border-bottom: solid 2px @active;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Pulseaudio tweaks                                                        */
+/*──────────────────────────────────────────────────────────────────────────*/
+#pulseaudio {
+    padding-top: 3px;
+}
+
+#pulseaudio.muted {
+    color: #FF0000;
+    padding-top: 2px;
+    padding-right: 10px;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Sliders (backlight & pulseaudio)                                         */
+/*──────────────────────────────────────────────────────────────────────────*/
+#backlight-slider,
+#pulseaudio-slider {
+    padding: 0 5px 0 8px;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+    min-width: 50px;
+    min-height: 5px;
+    border-radius: 8px;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+    min-width: 5px;
+    min-height: 5px;
+    background-color: #FFFFFF;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Battery states                                                           */
+/*──────────────────────────────────────────────────────────────────────────*/
+#battery.charging {
+    color: #77DD77;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #ffbe61;
+    color: black;
 }
 
 #battery.critical:not(.charging) {
-  animation: blink 0.5s steps(8) infinite alternate;
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
