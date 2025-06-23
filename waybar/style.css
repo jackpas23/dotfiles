@@ -22,18 +22,28 @@ window#waybar {
   margin: 0 4px;
   padding: 4px 12px;
 
-  background-color: transparent;           /* no fill */
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 9999px;                   /* pill/oval shape */
+/* apply to every module item ◉ */
+#modules-left > *,
+#modules-center > *,
+#modules-right > * {
+  margin: 0 4px;
+  padding: 4px 12px;
+
+  /* a semi-transparent dark background so text pops */
+  background-color: rgba(0, 0, 0, 0.4);
+
+  /* optional soft border for extra “pop” */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px; /* pill shape */
 }
 
-/* hover accent */
+/* on hover, brighten the backdrop and border */
 #modules-left > *:hover,
 #modules-center > *:hover,
 #modules-right > *:hover {
-  border-color: rgba(255,255,255,0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.4);
 }
-
 /* keep your existing color rules */
 #clock      { color: @yellow; }
 #cpu        { color: @green; }
