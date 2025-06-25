@@ -1,0 +1,1 @@
+/home/flaxo/.config/waybar/scripts/mindmaps/admind-map.sh

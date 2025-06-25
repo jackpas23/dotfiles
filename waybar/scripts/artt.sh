@@ -1,0 +1,1 @@
+/home/flaxo/.config/waybar/scripts/artt.sh
