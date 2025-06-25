@@ -1,0 +1,1 @@
+/home/flaxo/.config/hypr/scripts/controller.sh
