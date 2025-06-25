@@ -1,22 +1,35 @@
 - clean:
     - '~'
-
 - link:
-    ~/.tmux.conf:
-      path: tmux.conf
-      force: true
-    ~/.zshrc:
-      path: zshrc
-      force: true
-    ~/.config/waybar/:
-      path: waybar/**
-      glob: true
-      force: true
-    ~/.config/hypr/:
-      path: hypr/**
-      glob: true
-      force: true
-    ~/.config/kitty/:
-      path: kitty/**
-      glob: true
-      force: true
+    ~/.config/hypr/hyprland.conf: hypr/hyprland.conf
+    ~/.config/hypr/monitors.conf: hypr/monitors.conf
+    ~/.config/hypr/workspaces.conf: hypr/workspaces.conf
+    ~/.config/hypr/homelab/homelab-hypr.conf: hypr/homelab/homelab-hypr.conf
+    ~/.config/hypr/homelab/swww/monalisa.png: hypr/homelab/swww/monalisa.png
+    ~/.config/hypr/pwn/hacking-hypr.conf: hypr/pwn/hacking-hypr.conf
+    ~/.config/hypr/pwn/swww/nickleback.png: hypr/pwn/swww/nickleback.png
+    ~/.config/hypr/scripts/controller.sh: hypr/scripts/controller.sh
+
+    ~/.config/kitty/current-theme.conf: kitty/current-theme.conf
+    ~/.config/kitty/kitty.conf: kitty/kitty.conf
+    ~/.config/kitty/homelab/homelab.conf: kitty/homelab/homelab.conf
+    ~/.config/kitty/pwn/pwn.conf: kitty/pwn/pwn.conf
+
+    ~/.config/waybar/config: waybar/config
+    ~/.config/waybar/style.css: waybar/style.css
+    ~/.config/waybar/modules: waybar/modules
+    ~/.config/waybar/homelab/homelab-config: waybar/homelab/homelab-config
+    ~/.config/waybar/homelab/homelab-style.css: waybar/homelab/homelab-style.css
+    ~/.config/waybar/pwn/pwn-config: waybar/pwn/pwn-config
+    ~/.config/waybar/pwn/pwn-style.css: waybar/pwn/pwn-style.css
+    ~/.config/waybar/scripts/artt.sh: waybar/scripts/artt.sh
+    ~/.config/waybar/scripts/gtfobins.sh: waybar/scripts/gtfobins.sh
+    ~/.config/waybar/scripts/hack.sh: waybar/scripts/hack.sh
+    ~/.config/waybar/scripts/iframe.html: waybar/scripts/iframe.html
+    ~/.config/waybar/scripts/lolad.sh: waybar/scripts/lolad.sh
+    ~/.config/waybar/scripts/mindmaps/admind-map.sh: waybar/scripts/mindmaps/admind-map.sh
+    ~/.config/waybar/scripts/mindmaps/mindmap_ad_dark_classic_2025.03.excalidraw.svg: waybar/scripts/mindmaps/mindmap_ad_dark_classic_2025.03.excalidraw.svg
+
+    ~/.tmux.conf: tmux.conf
+    ~/.zshrc: zshrc
+
