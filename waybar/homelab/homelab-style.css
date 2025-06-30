@@ -1,1 +1,154 @@
-/home/flaxo/.config/waybar/homelab/homelab-style.css
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Define your active/text color (replace #FFFFFF with whatever you like) */
+/*──────────────────────────────────────────────────────────────────────────*/
+@define-color active #FFFFFF;
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Base reset & font                                                       */
+/*──────────────────────────────────────────────────────────────────────────*/
+* {
+    border: none;
+    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF";
+    min-height: 10px;
+    color: @active;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Bar background & tooltip                                                */
+/*──────────────────────────────────────────────────────────────────────────*/
+window#waybar {
+    background: rgba(0, 0, 0, 0.0);
+}
+
+tooltip {
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.9);
+    color: @active;
+}
+
+tooltip label {
+    color: @active;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Group-pills for left, center, right                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
+.modules-left,
+.modules-center,
+.modules-right {
+    border-radius: 15px;
+    padding: 0px 5px;
+    margin: 2px 5px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Per-module padding under those pills                                     */
+/*──────────────────────────────────────────────────────────────────────────*/
+#battery,
+#custom-clipboard,
+#custom-colorpicker,
+#custom-powerDraw,
+#custom-updates,
+#custom-pacman,
+#bluetooth,
+#pulseaudio,
+#custom-hotspot,
+#pulseaudio.mic,
+#pulseaudio.bluetooth,
+#network,
+#disk,
+#memory,
+#backlight,
+#cpu,
+#temperature,
+#custom-weather,
+#idle_inhibitor,
+#jack,
+#tray,
+#window,
+#clock {
+    padding: 0 5px;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Workspace underline                                                      */
+/*──────────────────────────────────────────────────────────────────────────*/
+#workspaces button {
+    border-radius: 0px;
+}
+
+#workspaces button.active {
+    border-bottom: solid 2px @active;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Pulseaudio tweaks                                                        */
+/*──────────────────────────────────────────────────────────────────────────*/
+#pulseaudio {
+    padding-top: 3px;
+}
+
+#pulseaudio.muted {
+    color: #FF0000;
+    padding-top: 2px;
+    padding-right: 10px;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Sliders (backlight & pulseaudio)                                         */
+/*──────────────────────────────────────────────────────────────────────────*/
+#backlight-slider,
+#pulseaudio-slider {
+    padding: 0 5px 0 8px;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+    min-width: 50px;
+    min-height: 5px;
+    border-radius: 8px;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+    min-width: 5px;
+    min-height: 5px;
+    background-color: #FFFFFF;
+}
+
+/*──────────────────────────────────────────────────────────────────────────*/
+/* Battery states                                                           */
+/*──────────────────────────────────────────────────────────────────────────*/
+#battery.charging {
+    color: #77DD77;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #ffbe61;
+    color: black;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}

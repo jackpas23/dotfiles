@@ -1,0 +1,13 @@
+#!/bin/bash/env
+
+pacman -Syu --neeeded base-devel git obsidian swww waybar coreutils python-pipx
+
+pipx ensurepath
+pipx install exegol
+
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+yay -S min-browser

@@ -1,1 +1,68 @@
-/home/flaxo/.config/waybar/scripts/iframe.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Show a specific part of a website in iframe</title>
+  <style>
+    
+    #div-id {
+      width    : 745px;
+      height   : 420px;
+      position : relative;
+      overflow : hidden;
+    }
+
+    #iframe-id {
+      position : absolute;
+      top      : -90px;
+      width    : 770px;
+      height   : 200vh;
+    }
+
+    /* Fullscreen styles applied after navigation */
+    #div-id.fullscreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      overflow: visible;
+      z-index: 9999;
+    }
+    #div-id.fullscreen #iframe-id {
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+
+    }
+  </style>
+</head>
+<body style="background-color: #1c1c1c; color: white;">
+  <div id="div-id">
+    <iframe
+      src="https://book.hacktricks.wiki/en/index.html"
+      id="iframe-id"
+      scrolling="yes"
+      tabindex="0">
+    </iframe>
+  </div>
+
+  <script>
+    let firstLoad = true;
+    const wrapper = document.getElementById('div-id');
+    const iframe  = document.getElementById('iframe-id');
+
+    iframe.addEventListener('load', function() {
+      if (firstLoad) {
+        // initial load → just focus so "S" works
+        firstLoad = false;
+        iframe.focus();
+      } else {
+        // second load (after you click a search result) → go fullscreen
+        wrapper.classList.add('fullscreen');
+      }
+    });
+  </script>
+</body>
+</html>
+
