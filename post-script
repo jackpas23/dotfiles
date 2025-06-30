@@ -3,7 +3,7 @@ set -euo pipefail
 
 # 1) System packages
 sudo pacman -Syu --needed \
-  base-devel git obsidian swww waybar coreutils python-pipx rofi
+  base-devel git obsidian swww waybar coreutils python-pipx rofi exa zoxide
 
 # 2) pipx & Exegol
 pipx ensurepath
@@ -17,14 +17,15 @@ makepkg -si --noconfirm
 
 # 4) AUR apps
 yay -S min-browser --noconfirm
-yay -S zsh         --noconfirm
-
+yay -S zsh --noconfirm
+~/.fzf/install
 # 5) Switch to Zsh
-chsh -s "$(which zsh)"
+chsh -s "/usr/bin/zsh"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+source <(fzf --zsh)
 
 # 6) Dotfiles bootstrap (if not already cloned)
 # git clone https://github.com/you/your-dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install
-
-
