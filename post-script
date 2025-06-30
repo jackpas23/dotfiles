@@ -7,7 +7,7 @@ sudo pacman -Syu --needed \
   obsidian swww waybar coreutils python-pipx rofi exa zoxide fzf
 
 # ─── 2) pipx & Exegol ─────────────────────────────────────────────────────────
-pipx ensurepath              # make sure ~/.local/bin is on your PATH
+pipx ensurepath # make sure ~/.local/bin is on your PATH
 pipx install exegol
 
 # ─── 3) Install or update yay (AUR helper) ────────────────────────────────────
@@ -41,8 +41,8 @@ if [[ ! -d "${HOME}/.fzf" ]]; then
 fi
 
 # ─── 7) Oh My Zsh (non-interactive) and custom plugins ───────────────────────
-export RUNZSH=no   # don’t spawn a new shell after install
-export CHSH=no     # we handle shell change explicitly
+export RUNZSH=no # don’t spawn a new shell after install
+export CHSH=no   # we handle shell change explicitly
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
@@ -62,8 +62,5 @@ fi
 sed -i 's/^plugins=(/plugins=(zsh-autosuggestions zsh-syntax-highlighting fzf-tab /' ~/.zshrc
 
 # ─── 8) Dotfiles bootstrap ────────────────────────────────────────────────────
-if [[ ! -d "${HOME}/.dotfiles" ]]; then
-  git clone https://github.com/yourusername/your-dotfiles.git ~/.dotfiles
-fi
 cd ~/.dotfiles
 ./install
