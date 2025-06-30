@@ -1,24 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# 1) System packages
-sudo pacman -Syu --needed \
-  base-devel git obsidian swww waybar coreutils python-pipx rofi exa zoxide
-
-# 2) pipx & Exegol
-pipx ensurepath
-pipx install exegol
-
-# 3) yay (AUR helper)
-cd /tmp
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-
-# 4) AUR apps
-yay -S min-browser --noconfirm#!/usr/bin/env bash
-set -euo pipefail
-
 # ─── 1) System packages ───────────────────────────────────────────────────────
 sudo pacman -Syu --needed \
   base-devel git \
@@ -56,17 +38,5 @@ chsh -s "$(which zsh)" "$USER"
 if [[ ! -d "${HOME}/dotfiles" ]]; then
   git clone https://github.com/yourusername/your-dotfiles.git ~/dotfiles
 fi
-cd ~/dotfiles
-./install
-yay -S zsh --noconfirm
-~/.fzf/install
-# 5) Switch to Zsh
-chsh -s "/usr/bin/zsh"
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-source <(fzf --zsh)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# 6) Dotfiles bootstrap (if not already cloned)
-# git clone https://github.com/you/your-dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install
