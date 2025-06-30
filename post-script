@@ -35,7 +35,7 @@ yes | ~/.fzf/install --all
 # ─── 7) Oh My Zsh (non-interactive) and custom plugins ───────────────────────
 export RUNZSH=no # don’t spawn a new shell after install
 export CHSH=no   # we’ll handle chsh ourselves
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Clone and enable Oh My Zsh plugins
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
