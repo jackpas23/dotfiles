@@ -7,7 +7,7 @@ sudo pacman -Syu --needed \
   obsidian swww waybar coreutils python-pipx rofi exa zoxide fzf
 
 # ─── 2) pipx & Exegol ─────────────────────────────────────────────────────────
-pipx ensurepath # make sure ~/.local/bin is on your PATH
+pipx ensurepath              # make sure ~/.local/bin is on your PATH
 pipx install exegol
 
 # ─── 3) Install yay (AUR helper) ──────────────────────────────────────────────
@@ -32,13 +32,29 @@ if [[ ! -d "${HOME}/.fzf" ]]; then
 fi
 yes | ~/.fzf/install --all
 
-# ─── 7) Oh My Zsh (non-interactive) ────────────────────────────────────────────
-export RUNZSH=no # don’t spawn a new shell after install
-export CHSH=no   # we’ll do chsh ourselves
-zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# ─── 7) Oh My Zsh (non-interactive) and custom plugins ───────────────────────
+export RUNZSH=no   # don’t spawn a new shell after install
+export CHSH=no     # we’ll handle chsh ourselves
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Clone and enable Oh My Zsh plugins
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+# zsh-autosuggestions
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+# zsh-syntax-highlighting
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
+# fzf-tab
+if [[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]]; then
+  git clone https://github.com/Aloxaf/fzf-tab.git "$ZSH_CUSTOM/plugins/fzf-tab"
+fi
+# enable the plugins in .zshrc
+sed -i 's/^plugins=(/plugins=(zsh-autosuggestions zsh-syntax-highlighting fzf-tab /' ~/.zshrc
 
 # ─── 8) Change your login shell to Zsh ────────────────────────────────────────
-# use sudo so it won’t prompt for your password again
 sudo chsh -s "$ZSH_PATH" "$USER"
 
 # ─── 9) Dotfiles bootstrap ────────────────────────────────────────────────────
