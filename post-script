@@ -7,7 +7,7 @@ sudo pacman -Syu --needed \
   obsidian swww waybar coreutils python-pipx rofi exa zoxide fzf
 
 # ─── 2) pipx & Exegol ─────────────────────────────────────────────────────────
-pipx ensurepath # add ~/.local/bin to your PATH if needed
+pipx ensurepath              # make sure ~/.local/bin is on your PATH
 pipx install exegol
 
 # ─── 3) Install yay (AUR helper) ──────────────────────────────────────────────
@@ -17,26 +17,33 @@ cd yay
 makepkg -si --noconfirm
 
 # ─── 4) AUR packages ──────────────────────────────────────────────────────────
-yay -S --noconfirm min-browser zsh
+yay -S --noconfirm min-browser zsh bat
 
-# ─── 5) fzf integration ──────────────────────────────────────────────────────
+# ─── 5) Ensure Zsh is a valid shell ────────────────────────────────────────────
+ZSH_PATH="$(which zsh)"
+if ! grep -Fxq "$ZSH_PATH" /etc/shells; then
+  echo "Adding $ZSH_PATH to /etc/shells"
+  echo "$ZSH_PATH" | sudo tee -a /etc/shells
+fi
+
+# ─── 6) fzf integration ───────────────────────────────────────────────────────
 if [[ ! -d "${HOME}/.fzf" ]]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 fi
-# run the installer non-interactively (writes to ~/.zshrc for you)
 yes | ~/.fzf/install --all
 
-# ─── 6) Oh My Zsh (non-interactive) ───────────────────────────────────────────
-export RUNZSH=no # don’t spawn a new shell at the end
-export CHSH=no   # we’ll chsh ourselves explicitly below
+# ─── 7) Oh My Zsh (non-interactive) ────────────────────────────────────────────
+export RUNZSH=no   # don’t spawn a new shell after install
+export CHSH=no     # we’ll do chsh ourselves
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# ─── 7) Change your login shell to Zsh ────────────────────────────────────────
-chsh -s "$(which zsh)" "$USER"
+# ─── 8) Change your login shell to Zsh ────────────────────────────────────────
+# use sudo so it won’t prompt for your password again
+sudo chsh -s "$ZSH_PATH" "$USER"
 
-# ─── 8) Dotfiles bootstrap ────────────────────────────────────────────────────
-if [[ ! -d "${HOME}/dotfiles" ]]; then
-  git clone https://github.com/yourusername/your-dotfiles.git ~/dotfiles
+# ─── 9) Dotfiles bootstrap ────────────────────────────────────────────────────
+if [[ ! -d "${HOME}/.dotfiles" ]]; then
+  git clone https://github.com/yourusername/your-dotfiles.git ~/.dotfiles
 fi
-cd ~/dotfiles
+cd ~/.dotfiles
 ./install
