@@ -1,17 +1,30 @@
-#!/bin/bash/env
-sudo pacman -Syu --neeeded base-devel git obsidian swww waybar coreutils python-pipx rofi
+#!/usr/bin/env bash
+set -euo pipefail
 
-pipx install exegol
+# 1) System packages
+sudo pacman -Syu --needed \
+  base-devel git obsidian swww waybar coreutils python-pipx rofi
+
+# 2) pipx & Exegol
 pipx ensurepath
+pipx install exegol
 
-
+# 3) yay (AUR helper)
 cd /tmp
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+makepkg -si --noconfirm
 
-yay -S min-browser --no-confirm
-yay -S zsh --no-confirm
-chsh -s /bin/zsh
-cd ~ 
-cd dotfiles && ./install
+# 4) AUR apps
+yay -S min-browser --noconfirm
+yay -S zsh         --noconfirm
+
+# 5) Switch to Zsh
+chsh -s "$(which zsh)"
+
+# 6) Dotfiles bootstrap (if not already cloned)
+# git clone https://github.com/you/your-dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./install
+
+
