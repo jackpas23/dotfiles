@@ -1,13 +1,17 @@
 #!/bin/bash/env
+sudo pacman -Syu --neeeded base-devel git obsidian swww waybar coreutils python-pipx rofi
 
-pacman -Syu --neeeded base-devel git obsidian swww waybar coreutils python-pipx
-
-pipx ensurepath
 pipx install exegol
+pipx ensurepath
+
 
 cd /tmp
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-yay -S min-browser
+yay -S min-browser --no-confirm
+yay -S zsh --no-confirm
+chsh -s /bin/zsh
+cd ~ 
+cd dotfiles && ./install
