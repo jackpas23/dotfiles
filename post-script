@@ -24,7 +24,7 @@ chsh -s "/usr/bin/zsh"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 source <(fzf --zsh)
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # 6) Dotfiles bootstrap (if not already cloned)
 # git clone https://github.com/you/your-dotfiles.git ~/dotfiles
 cd ~/dotfiles
