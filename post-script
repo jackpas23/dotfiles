@@ -4,7 +4,7 @@ set -euo pipefail
 # ─── 1) System packages ───────────────────────────────────────────────────────
 sudo pacman -Syu --needed \
   base-devel git \
-  obsidian swww waybar coreutils python-pipx rofi exa zoxide fzf
+  obsidian swww waybar coreutils python-pipx rofi exa zoxide fzf fastfetch
 
 # ─── 2) pipx & Exegol ─────────────────────────────────────────────────────────
 pipx ensurepath # make sure ~/.local/bin is on your PATH
