@@ -1,16 +1,21 @@
 - clean:
     - '~'
 
+
 - shell:
-    # make any parent folders you need
+    # hyprland
     - mkdir -p ~/.config/hypr/homelab/swww
     - mkdir -p ~/.config/hypr/pwn/swww
     - mkdir -p ~/.config/hypr/scripts
+
+    # kitty
     - mkdir -p ~/.config/kitty/homelab
     - mkdir -p ~/.config/kitty/pwn
-    - mkdir -p ~/.config/waybar/modules
-    - mkdir -p ~/.config/waybar/scripts/mindmaps
 
+    # waybar parents (but NOT modules!)
+    - mkdir -p ~/.config/waybar/homelab
+    - mkdir -p ~/.config/waybar/pwn
+    - mkdir -p ~/.config/waybar/scripts/mindmaps
 - link:
     ~/.config/hypr/hyprland.conf: hypr/hyprland.conf
     ~/.config/hypr/monitors.conf: hypr/monitors.conf
