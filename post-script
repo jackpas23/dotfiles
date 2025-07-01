@@ -1,67 +1,90 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ─── 1) System packages ───────────────────────────────────────────────────────
-sudo pacman -Syu --needed \
+# ─── 0) Ensure running as root ─────────────────────────────────────────────────
+if [[ "$EUID" -ne 0 ]]; then
+  echo "→ This script must be run as root (or via sudo)." >&2
+  exit 1
+fi
+
+# ─── 1) System packages ────────────────────────────────────────────────────────
+pacman -Syu --needed --noconfirm \
   base-devel git \
   obsidian swww waybar coreutils python-pipx rofi exa zoxide fzf fastfetch
 
-# ─── 2) pipx & Exegol ─────────────────────────────────────────────────────────
-pipx ensurepath # make sure ~/.local/bin is on your PATH
-pipx install exegol
+# ─── 2) pipx & Exegol ──────────────────────────────────────────────────────────
+# ensure ~/.local/bin is on PATH for current session
+export PATH="$HOME/.local/bin:$PATH"
+pipx ensurepath
+pipx install --force exegol
 
 # ─── 3) Install or update yay (AUR helper) ────────────────────────────────────
 YAY_DIR="/tmp/yay"
-if [[ -d "$YAY_DIR" ]]; then
-  echo "Updating existing yay in $YAY_DIR"
-  cd "$YAY_DIR"
-  git pull --ff-only
+if [[ -d "$YAY_DIR/.git" ]]; then
+  echo "→ Updating existing yay in $YAY_DIR"
+  git -C "$YAY_DIR" pull --ff-only
 else
-  echo "Cloning yay into $YAY_DIR"
+  echo "→ Cloning yay into $YAY_DIR"
+  rm -rf "$YAY_DIR"
   git clone https://aur.archlinux.org/yay.git "$YAY_DIR"
+fi
+(
   cd "$YAY_DIR"
-fi
-makepkg -si --noconfirm
+  makepkg -si --noconfirm
+)
 
-# ─── 4) AUR packages ──────────────────────────────────────────────────────────
-yay -S --noconfirm min-browser zsh bat
+# ─── 4) AUR packages ───────────────────────────────────────────────────────────
+# suppress interactive prompts
+sudo -u "$SUDO_USER" yay -S --noconfirm min-browser zsh bat
 
-# ─── 5) Ensure Zsh is a valid shell and change shell ──────────────────────────
-ZSH_PATH="$(which zsh)"
+# ─── 5) Ensure Zsh is a valid shell and change default shell ───────────────────
+ZSH_PATH="$(command -v zsh)"
 if ! grep -Fxq "$ZSH_PATH" /etc/shells; then
-  echo "Adding $ZSH_PATH to /etc/shells"
-  echo "$ZSH_PATH" | sudo tee -a /etc/shells
+  echo "→ Adding $ZSH_PATH to /etc/shells"
+  echo "$ZSH_PATH" >> /etc/shells
 fi
-chsh -s "$(which zsh)"
+chsh -s "$ZSH_PATH" "${SUDO_USER:-$USER}"
 
 # ─── 6) fzf integration ───────────────────────────────────────────────────────
 if [[ ! -d "${HOME}/.fzf" ]]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  yes | ~/.fzf/install --all
+  sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
+  yes | "${HOME}/.fzf/install" --all
 fi
 
-# ─── 7) Oh My Zsh (non-interactive) and custom plugins ───────────────────────
-export RUNZSH=no # don’t spawn a new shell after install
-export CHSH=no   # we handle shell change explicitly
-
-/sbin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# ─── 7) Oh My Zsh (non-interactive) and custom plugins ────────────────────────
+export RUNZSH=no
+export CHSH=no
+# run as normal user
+sudo -u "$SUDO_USER" sh -c 'curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh'
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-# zsh-autosuggestions
-if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-fi
-# zsh-syntax-highlighting
-if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-fi
-# fzf-tab
-if [[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]]; then
-  git clone https://github.com/Aloxaf/fzf-tab.git "$ZSH_CUSTOM/plugins/fzf-tab"
-fi
-# enable the plugins in .zshrc
-sed -i 's/^plugins=(/plugins=(zsh-autosuggestions zsh-syntax-highlighting fzf-tab /' ~/.zshrc
+for plugin in zsh-autosuggestions zsh-syntax-highlighting fzf-tab; do
+  if [[ ! -d "${ZSH_CUSTOM}/plugins/${plugin}" ]]; then
+    sudo -u "$SUDO_USER" git clone "https://github.com/zsh-users/${plugin}.git" "${ZSH_CUSTOM}/plugins/${plugin}"
+  fi
+done
+
+# enable the plugins in ~/.zshrc (idempotent)
+sudo -u "$SUDO_USER" sed -i \
+  -E "s/^plugins=\(.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-tab)/" \
+  "${HOME}/.zshrc"
 
 # ─── 8) Dotfiles bootstrap ────────────────────────────────────────────────────
-~/.dotfiles/install
-cp ~/.dotfiles/.zshrc ~/.zshrc
+# Ensure installer is executable, then run
+if [[ -x "${HOME}/.dotfiles/install" ]]; then
+  sudo -u "$SUDO_USER" "${HOME}/.dotfiles/install"
+else
+  echo "→ Making ~/.dotfiles/install executable"
+  chmod +x "${HOME}/.dotfiles/install"
+  sudo -u "$SUDO_USER" "${HOME}/.dotfiles/install"
+fi
+
+# Copy your .zshrc from dotfiles, but only if it differs
+DOT_RC="${HOME}/.dotfiles/.zshrc"
+TARGET_RC="${HOME}/.zshrc"
+if ! cmp -s "$DOT_RC" "$TARGET_RC"; then
+  echo "→ Installing .zshrc from dotfiles"
+  cp "$DOT_RC" "$TARGET_RC"
+fi
+
+echo "→ All done! Reboot or log out/in to start using Zsh as your login shell."
