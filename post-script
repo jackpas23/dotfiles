@@ -123,7 +123,7 @@ else
   "$DOTDIR/install"
 fi
 
-cp ~/.dotfiles/.zshrc ~/.zshrc
+cp ~/dotfiles/.zshrc ~/.zshrc
 source ~/.zshrc
 # ─── Done ─────────────────────────────────────────────────────────────────────
 echo
