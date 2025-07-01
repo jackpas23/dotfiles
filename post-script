@@ -32,7 +32,7 @@ if ! grep -Fxq "$ZSH_PATH" /etc/shells; then
   echo "Adding $ZSH_PATH to /etc/shells"
   echo "$ZSH_PATH" | sudo tee -a /etc/shells
 fi
-sudo chsh -s "$(which zsh)"
+chsh -s "$(which zsh)"
 
 # ─── 6) fzf integration ───────────────────────────────────────────────────────
 if [[ ! -d "${HOME}/.fzf" ]]; then
