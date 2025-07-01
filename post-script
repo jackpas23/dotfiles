@@ -92,7 +92,7 @@ if [[ -d "$USER_HOME/.dotfiles" ]]; then
 elif [[ -d "$USER_HOME/dotfiles" ]]; then
   DOTDIR="$USER_HOME/dotfiles"
 else
-  GIT_REPO="https://github.com/YOURUSERNAME/dotfiles.git"
+  GIT_REPO="https://github.com/jackpas23/dotfiles.git"
   echo "→ Cloning dotfiles from $GIT_REPO…"
   git clone "$GIT_REPO" "$USER_HOME/.dotfiles"
   DOTDIR="$USER_HOME/.dotfiles"
