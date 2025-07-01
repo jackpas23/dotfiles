@@ -62,5 +62,5 @@ fi
 sed -i 's/^plugins=(/plugins=(zsh-autosuggestions zsh-syntax-highlighting fzf-tab /' ~/.zshrc
 
 # ─── 8) Dotfiles bootstrap ────────────────────────────────────────────────────
-cd ~/.dotfiles
-./install
+~/.dotfiles/install
+cp ~/.dotfiles/.zshrc ~/.zshrc
