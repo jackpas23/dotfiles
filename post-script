@@ -32,7 +32,7 @@ if ! grep -Fxq "$ZSH_PATH" /etc/shells; then
   echo "Adding $ZSH_PATH to /etc/shells"
   echo "$ZSH_PATH" | sudo tee -a /etc/shells
 fi
-sudo chsh -s "$ZSH_PATH" "$USER"
+sudo chsh -s "$(which zsh)"
 
 # ─── 6) fzf integration ───────────────────────────────────────────────────────
 if [[ ! -d "${HOME}/.fzf" ]]; then
@@ -43,7 +43,8 @@ fi
 # ─── 7) Oh My Zsh (non-interactive) and custom plugins ───────────────────────
 export RUNZSH=no # don’t spawn a new shell after install
 export CHSH=no   # we handle shell change explicitly
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+/sbin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 # zsh-autosuggestions
