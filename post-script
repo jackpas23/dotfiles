@@ -69,9 +69,9 @@ fi
 # ─── Zsh plugins ───────────────────────────────────────────────────────────
 ZSH_CUSTOM="$USER_HOME/.oh-my-zsh/custom"
 declare -A ZSH_PLUGINS=(
-  [zsh-autosuggestions]=https://github.com/zsh-users/zsh-autosuggestions.git
-  [zsh-syntax-highlighting]=https://github.com/zsh-users/zsh-syntax-highlighting.git
-  [fzf-tab]=https://github.com/Aloxaf/fzf-tab.git
+  [zsh - autosuggestions]=https://github.com/zsh-users/zsh-autosuggestions.git
+  [zsh - syntax - highlighting]=https://github.com/zsh-users/zsh-syntax-highlighting.git
+  [fzf - tab]=https://github.com/Aloxaf/fzf-tab.git
 )
 for name in "${!ZSH_PLUGINS[@]}"; do
   dest="$ZSH_CUSTOM/plugins/$name"
@@ -98,6 +98,9 @@ else
   DOTDIR="$USER_HOME/.dotfiles"
 fi
 
+chsh -s "/bin/zsh"
+rm ~/.zshrc
+
 echo "→ Running dotfiles installer…"
 if [[ -x "$DOTDIR/install" ]]; then
   "$DOTDIR/install"
@@ -106,7 +109,7 @@ else
   "$DOTDIR/install"
 fi
 
-rm ~/.zshrc
+#rm ~/.zshrc
 ~/dotfiles/install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 chsh -s "/bin/zsh"
