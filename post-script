@@ -123,8 +123,8 @@ else
   "$DOTDIR/install"
 fi
 
-cp ~/dotfiles/.zshrc ~/.zshrc
-source ~/.zshrc
+rm ~/.zshrc
+~/dotfiles/install
 # ─── Done ─────────────────────────────────────────────────────────────────────
 echo
 echo "✔ All dependencies installed."
