@@ -100,7 +100,6 @@ fi
 
 chsh -s "/bin/zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-rm ~/.zshrc
 
 echo "→ Running dotfiles installer…"
 if [[ -x "$DOTDIR/install" ]]; then
